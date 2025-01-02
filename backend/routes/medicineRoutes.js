@@ -1,11 +1,13 @@
 const express = require('express');
-const { getMedicines, getMedicineById } = require('../controllers/medicineController');
 const router = express.Router();
+const {
+    getMedicines,
+    getMedicineById,
+    getPharmaciesByMedicine
+} = require('../controllers/medicineController');
 
-// Route to get all medicines or search by name
-router.get('/', getMedicines);
-
-// Route to get a medicine by ID
-router.get('/:id', getMedicineById);
+router.get('/', getMedicines); // Fetch all medicines or by query
+router.get('/:id', getMedicineById); // Fetch a specific medicine by ID
+router.get('/pharmacies', getPharmaciesByMedicine); // Fetch pharmacies by medicine name
 
 module.exports = router;

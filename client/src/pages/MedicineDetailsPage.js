@@ -13,8 +13,10 @@ const MedicineDetailsPage = () => {
             try {
                 setLoading(true);
                 const response = await axios.get(`http://localhost:5000/api/medicines/${id}`);
+                console.log('API Response:', response.data);
                 setMedicineDetails(response.data);
             } catch (err) {
+                console.error('API Error:', err.response || err.message);
                 setError('Failed to fetch medicine details. Please try again.');
             } finally {
                 setLoading(false);
@@ -36,7 +38,7 @@ const MedicineDetailsPage = () => {
                 <thead>
                     <tr>
                         <th>Pharmacy</th>
-                        <th>Price ($)</th>
+                        <th>Price </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,5 +53,6 @@ const MedicineDetailsPage = () => {
         </div>
     );
 };
+
 
 export default MedicineDetailsPage;

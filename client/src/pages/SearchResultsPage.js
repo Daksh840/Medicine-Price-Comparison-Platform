@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios'; // Keep this if you plan to make API calls.
+import axios from 'axios';
 
 const SearchResultsPage = () => {
     const location = useLocation();
@@ -20,6 +20,7 @@ const SearchResultsPage = () => {
                 });
                 setResults(response.data);
             } catch (err) {
+                console.error(err);
                 setError('Failed to fetch search results. Please try again.');
             } finally {
                 setLoading(false);
@@ -44,9 +45,9 @@ const SearchResultsPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {results.map((result) => (
-                        <tr key={result.id}>
-                            <td>{result.pharmacy}</td>
+                    {results.map((result, index) => (
+                        <tr key={index}>
+                            <td>{result.name}</td>
                             <td>{result.price}</td>
                         </tr>
                     ))}
